@@ -31,7 +31,7 @@ def menu():
         </div>
 
         <footer>
-            &copy; Алина Андреичева, ФБИ-23, 3 курс, 2024 
+            &copy; Чернухина Полина, ФБИ-23, 3 курс, 2024 
         </footer>
     </body>
 </html>
@@ -77,7 +77,7 @@ def lab1():
             </ol>
         </div>
         <footer>
-            &copy; Алина Андреичева, ФБИ-23, 3 курс, 2024 
+            &copy; Чернухина Полина, ФБИ-23, 3 курс, 2024 
         </footer>
     </body>
 </html>
@@ -108,7 +108,7 @@ def student():
     <title>Студент</title>
 </head>
 <body>
-    <h1>Андреичева Алина Георгиевна</h1>
+    <h1>Чернухина Полина Валерьевна</h1>
     <img src="''' + url_for('static', filename='ngtu_logo.jpg') + '''" alt="Логотип НГТУ">
 </body>
 </html>

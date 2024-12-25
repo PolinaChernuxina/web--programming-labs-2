@@ -119,7 +119,7 @@ def clear_cookie():
         if cookie in request.cookies:
             response.set_cookie(cookie, '', expires=0)
     
-    return response
+    return response 
 
 
 khl_teams = [

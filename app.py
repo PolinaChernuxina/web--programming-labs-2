@@ -1,5 +1,25 @@
 from flask import Flask, redirect, url_for, render_template
-app = Flask(__name__)
+import os
+from lab1 import lab1
+from lab2 import lab2
+from lab3 import lab3
+from lab4 import lab4
+from lab5 import lab5
+from lab6 import lab6
+from lab7 import lab7
+
+app = Flask (__name__)
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'Секретно-секретный секрет')
+app.config['DB_TYPE'] = os.getenv('DB_TYPE', 'postgres')
+
+app.register_blueprint(lab1)
+app.register_blueprint(lab2)
+app.register_blueprint(lab3)
+app.register_blueprint(lab4)
+app.register_blueprint(lab5)
+app.register_blueprint(lab6)
+app.register_blueprint(lab7)
 
 @app.route("/")
 @app.route("/index")
@@ -11,166 +31,68 @@ def menu():
     return """
 <!DOCTYPE html>
 <html lang="ru">
+<head>
+    <title>НГТУ ФБ, Лабораторные работы</title>
+</head>
+<body>
+    <header>
+        НГТУ ФБ, WEB-программирование, часть 2. Список лабораторных  
+    </header>
+
+    <h1>web-сервер на flask</h1>
+    <li><a href="http://127.0.0.1:5000/lab1">Первая лабораторная</a></li>
+    <li><a href="http://127.0.0.1:5000/lab2">Вторая лабораторная</a></li>
+    <li><a href="http://127.0.0.1:5000/lab3">Третья лабораторная</a></li>
+    <li><a href="http://127.0.0.1:5000/lab4">Четвертая лабораторная</a></li>
+    <li><a href="http://127.0.0.1:5000/lab5">Пятая лабораторная</a></li>  
+    <li><a href="http://127.0.0.1:5000/lab6">Шестая лабораторная</a></li> 
+    <li><a href="http://127.0.0.1:5000/lab7">Седьмая лабораторная</a></li> 
+    <footer>
+        &copy: Чернухина Полина, ФБИ-23, 3 курс, 2024
+    </footer>
+</body>
+</html>
+"""
+
+@app.errorhandler(404)
+def not_found_404(err):
+    return '''
+<!doctype html>
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>НГТУ, ФБ, Лабораторные работы</title>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     </head>
     <body>
         <header>
             НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
         </header>
-        
-        <div>
-            <ol>
-                <li>
-                    <a href="/lab1">Лабораторная работа 1</a>
-                </li>
-            
-            </ol>
-        </div>
-
+        <h2>Ошибка 404 - такой страницы не существует</h2>
         <footer>
-            &copy; Чернухина Полина, ФБИ-23, 3 курс, 2024 
+            &copy; Чернухина Полина, ФБИ-23, 3 курс, 2024
         </footer>
     </body>
 </html>
-"""
+'''
 
-@app.route("/lab1")
-def lab1():
-    return """
-<!DOCTYPE html>
-<html lang="ru">
+
+@app.errorhandler(500)
+def not_found_500(err):
+    return '''
+<!doctype html>
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>НГТУ, ФБ, Лабораторная работа 1</title>
+        <title>НГТУ, ФБ, Лабораторные работы</title>
+        <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
     </head>
     <body>
         <header>
-            НГТУ, ФБ, Лабораторная работа 1
+            НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
         </header>
-        <p>Flask — фреймворк для создания веб-приложений на языке программирования Python, 
-        использующий набор инструментов Werkzeug, а также шаблонизатор Jinja2. Относится к 
-        категории так называемых микрофреймворков — минималистичных каркасов веб-приложений, 
-        сознательно предоставляющих лишь самые базовые возможности.</p>
-        
-        <a href="/menu">Меню</a>
-        
-        <h2>Реализованные роуты</h2>
-        <div>
-            <ol>
-                <li>
-                    <a href="lab1/oak">Дуб</a>
-                </li>
-                <li>
-                    <a href="lab1/student">Студент</a>
-                </li>
-                <li>
-                    <a href="lab1/python">Python</a>
-                </li>
-                <li>
-                    <a href="lab1/mfg">Мир йоги</a>
-                </li>
-            
-            </ol>
-        </div>
+        <h2>Ошибка 500 - сервер не смог обработать запрос</h2>
         <footer>
-            &copy; Чернухина Полина, ФБИ-23, 3 курс, 2024 
+            &copy; Чернухина Полина, ФБИ-23, 3 курс, 2024
         </footer>
     </body>
 </html>
-"""
-@app.route("/lab1/oak")
-def oak():
-    return '''
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <link rel="stylesheet" href="''' + url_for('static', filename='lab1.css') + '''">
-    <title>Дуб</title>
-</head>
-    <body>
-        <h1>Дуб</h1>
-        <img src="''' + url_for('static', filename='oak.jpg') + '''">
-    </body>
-</html>
 '''
-
-@app.route("/lab1/student")
-def student():
-    return '''
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
-    <title>Студент</title>
-</head>
-<body>
-    <h1>Чернухина Полина Валерьевна</h1>
-    <img src="''' + url_for('static', filename='logo.png') + '''" alt="Логотип НГТУ">
-</body>
-</html>
-'''
-
-@app.route("/lab1/python")
-def python_info():
-    return '''
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
-    <title>Python</title>
-</head>
-<body>
-    <h1>Язык программирования Python</h1>
-    <p>Python — это язык программирования, который широко используется в интернет-приложениях, 
-    разработке программного обеспечения, науке о данных и машинном обучении (ML). Разработчики 
-    используют Python, потому что он эффективен, прост в изучении и работает на разных платформах.</p>
-    
-    <p>Веб-разработка на стороне сервера включает в себя сложные серверные функции, с помощью которых веб-сайты отображают информацию для пользователя. Например, веб-сайты должны 
-    взаимодействовать с базами данных и другими веб-сайтами, а также защищать данные при их отправке по сети. </p>
-    <img src="''' + url_for('static', filename='python.jpg') + '''" alt="Программирование на Python">
-</body>
-</html>
-'''
-
-@app.route("/lab1/mfg")
-def mfg():
-    return '''
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <style>
-            body {
-                background-color: #ADD8E6;
-            }
-            h1 {
-                font-weight: bold;
-            }
-    </style>
-    <link rel="stylesheet" type="text/css" href="''' + url_for('static', filename='lab1.css') + '''">
-    <title>Мир йоги</title>
-</head>
-<body>
-    <h1>Мир йоги</h1>
-    <p><b>Йога</b> — не просто фитнес, а комплекс физических упражнений, дыхательных техник и практик концентрации внимания. Это целая философия, древнее учение, а для многих — образ жизни. Йога развивает человека всесторонне — через тело, ум и эмоции, а также помогает достичь гармонии физического и психологического состояния. 
-    Систематические занятия благотворно влияют на все органы и системы, позволяют достичь душевного равновесия.</p>
-    
-    <p2>Одна из главных причин, почему йога полезна, кроется в особенности организма человека. — <i>
-    асимметричность дыхания</i>. Ученые доказали, что каждые 2,5 часа дыхание переключается с одной ноздри на другую. В хатха-йоге, ставшей наиболее популярным направлением йоги, уделяют внимание такой особенности. Для этого используются дыхательные практики с асимметричным 
-    дыханием: левой ноздрей для придания тонуса и бодрости, а затем правой, наоборот, для расслабления.</p2>
-    <img src="''' + url_for('static', filename='йога2.jpg') + '''" alt="Программирование на Python">
-</body>
-</html>
-'''
-
-@app.route('/lab2/example')
-def example():
-    name = 'Полина Чернухина'
-    course = '3 курс'
-    lab = 'Лабораторная работа 2'
-    group = 'ФБИ-23'
-    return render_template('example.html', name=name, course=course, lab=lab, group=group)
-    

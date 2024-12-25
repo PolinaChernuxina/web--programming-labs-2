@@ -143,7 +143,7 @@ users = [
     {'login': 'jane', 'password': '777', 'name': 'Jane Rave', 'gender': 'female'},
 ]
 
-@lab4.route('/lab4/fridge', methods=['GET', 'POST'])
+@lab4.route('/lab4/fridge', methods=['GET', 'POST']) 
 def fridge():
     if request.method == 'GET':
         return render_template('lab4/fridge.html')

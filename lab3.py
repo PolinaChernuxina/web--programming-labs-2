@@ -51,7 +51,6 @@ def pay():
              price = 80
         else:
              price=70
-
         if request.args.get('milk') == 'on':
              price += 30
         if request.args.get('sugar') == 'on':

@@ -14,7 +14,7 @@
         {% if article.is_favourate %}(Избранная){% endif %}
         {% if article.is_public %}(Публичная){% endif %}
         <p></p>
-        <form action="{{ url_for('lab5.delete', article_id=article.id) }}" method="post">
+        <form action="{{ url_for('lab5.delete', article_id=article.id) }}" method="post"> 
             <button type="submit">Удалить</button>
         </form>
         <p></p>

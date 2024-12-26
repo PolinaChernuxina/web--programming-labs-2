@@ -71,7 +71,7 @@ def register():
 def create():
 
     login = session.get('login')
-
+ 
     if not login:
         return redirect('/lab5/login')
     

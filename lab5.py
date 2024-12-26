@@ -64,7 +64,7 @@ def register():
     else:    
         cur.execute("INSERT INTO users (login, password) VALUES (?, ?);", (login, password_hash))
 
-    db_close(conn, cur)
+    db_close(conn, cur) 
     return render_template('lab5/success.html', login=login)
 
 @lab5.route('/lab5/create', methods = ['GET', 'POST'])

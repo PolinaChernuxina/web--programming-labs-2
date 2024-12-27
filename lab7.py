@@ -118,7 +118,7 @@ def add_film():
         INSERT INTO films (title, title_ru, year, description) 
         VALUES (%s, %s, %s, %s) RETURNING *  
     """, (film['title'], film['title_ru'], film['year'], film['description']))
-    new_film = cur.fetchone()
+    new_film = cur.fetchone() 
     db_close(conn, cur)
     
     return jsonify(new_film), 201 

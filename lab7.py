@@ -56,7 +56,7 @@ def del_film(id):
         abort(404)
     return '', 204
 
-@lab7.route('/lab7/rest-api/films/<int:id>', methods=['PUT'])
+@lab7.route('/lab7/rest-api/films/<int:id>', methods=['PUT'])  
 def put_film(id):
     film = request.get_json()
     
@@ -71,7 +71,7 @@ def put_film(id):
     
     if not film.get('year'):
         return jsonify({'year': 'Укажите год выпуска фильма'}), 400
-    elif not str(film['year']).isdigit() or int(film['year']) < 1800 or int(film['year']) > 2100:
+    elif not str(film['year']).isdigit() or int(film['year']) < 1800 or int(film['year']) > 2100: 
         return jsonify({'year': 'Введите корректный год (1800-2100)'}), 400
 
     conn, cur = db_connect()

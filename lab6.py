@@ -42,7 +42,7 @@ def api():
 
     if data['method'] == 'info':
 
-        cur.execute("SELECT * FROM offices")
+        cur.execute("SELECT * FROM offices")  
         offices = cur.fetchall()
 
         cur.execute("SELECT SUM(price) AS total_cost FROM offices WHERE tenant IS NOT NULL")

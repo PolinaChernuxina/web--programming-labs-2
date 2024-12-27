@@ -79,7 +79,7 @@ def api():
         
         office = cur.fetchone()
 
-        if office and office['tenant']:
+        if office and office['tenant']: 
             db_close(conn, cur)
             return {
                 'jsonrpc': '2.0',

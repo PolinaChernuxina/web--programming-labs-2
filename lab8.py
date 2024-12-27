@@ -110,7 +110,7 @@ def logout():
 
 @lab8.route('/lab8/create', methods=['GET', 'POST'])
 @login_required
-def create():
+def create(): 
     if request.method == 'POST':
         title = request.form.get('title')
         article_text = request.form.get('article_text')

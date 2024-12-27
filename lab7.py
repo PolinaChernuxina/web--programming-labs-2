@@ -115,7 +115,7 @@ def add_film():
         return jsonify({'year': 'Введите корректный год (1800-2100)'}), 400
     conn, cur = db_connect()
     cur.execute("""
-        INSERT INTO films (title, title_ru, year, description)
+        INSERT INTO films (title, title_ru, year, description) 
         VALUES (%s, %s, %s, %s) RETURNING *  
     """, (film['title'], film['title_ru'], film['year'], film['description']))
     new_film = cur.fetchone()

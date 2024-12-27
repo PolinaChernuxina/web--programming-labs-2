@@ -125,7 +125,7 @@ def create():
 @login_required
 def edit(id):
     article = articles.query.get_or_404(id)
-    if request.method == 'POST':
+    if request.method == 'POST': 
         article.title = request.form.get('title')
         article.article_text = request.form.get('article_text')
         db.session.commit()

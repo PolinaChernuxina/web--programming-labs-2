@@ -47,7 +47,7 @@ def get_film(id):
 
 @lab7.route('/lab7/rest-api/films/<int:id>', methods=['DELETE'])
 def del_film(id):
-    conn, cur = db_connect()
+    conn, cur = db_connect() 
     cur.execute("DELETE FROM films WHERE id = %s RETURNING *", (id,))
     deleted_film = cur.fetchone()
     db_close(conn, cur)

@@ -114,7 +114,7 @@ def add_film():
     elif not str(film['year']).isdigit() or int(film['year']) < 1800 or int(film['year']) > 2100:
         return jsonify({'year': 'Введите корректный год (1800-2100)'}), 400
     conn, cur = db_connect()
-    cur.execute("""
+    cur.execute(""" 
         INSERT INTO films (title, title_ru, year, description) 
         VALUES (%s, %s, %s, %s) RETURNING *  
     """, (film['title'], film['title_ru'], film['year'], film['description']))

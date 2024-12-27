@@ -15,7 +15,7 @@ def lab():
 def register():
     if request.method == 'GET':
         return render_template('lab8/register.html')
-    
+     
     login_form = request.form.get('login')
     password_form = request.form.get('password')
 

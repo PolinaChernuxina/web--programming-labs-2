@@ -116,7 +116,7 @@ def add_film():
     conn, cur = db_connect()
     cur.execute("""
         INSERT INTO films (title, title_ru, year, description)
-        VALUES (%s, %s, %s, %s) RETURNING *
+        VALUES (%s, %s, %s, %s) RETURNING *  
     """, (film['title'], film['title_ru'], film['year'], film['description']))
     new_film = cur.fetchone()
     db_close(conn, cur)

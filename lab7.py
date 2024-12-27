@@ -40,7 +40,7 @@ def get_film(id):
         cur.execute("SELECT * FROM films WHERE id = ?", (id,))
     film = cur.fetchone()
     db_close(conn, cur)
-    
+     
     if not film:
         abort(404)
     return jsonify(film)

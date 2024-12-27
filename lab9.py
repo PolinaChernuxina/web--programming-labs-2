@@ -36,11 +36,10 @@ def get_sub_preference():
 
 @lab9.route('/lab9/congratulations', methods=['GET', 'POST'])
 def congratulations():
-    # Если поздравление уже есть в сессии, показываем его
+  
     if 'message' in session and 'image' in session:
         return render_template('lab9/congratulations.html', message=session['message'], image=session['image'])
-    
-    # Генерация поздравления при новом прохождении
+
     session['sub_preference'] = request.form.get('sub_preference')
     name = session['name']
     age = int(session['age'])
@@ -69,7 +68,6 @@ def congratulations():
 
     message = f"Поздравляю тебя, {name}! Желаю, чтобы {pronoun}. Вот тебе подарок — {gift}."
 
-    # Сохраняем данные поздравления в сессии
     session['message'] = message
     session['image'] = image
     return render_template('lab9/congratulations.html', message=message, image=image)

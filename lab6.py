@@ -25,7 +25,7 @@ def db_connect():
     return conn, cur
 
 def db_close(conn, cur):
-    conn.commit()
+    conn.commit() 
     cur.close()
     conn.close()
 
@@ -82,7 +82,7 @@ def api():
         if office and office['tenant']: 
             db_close(conn, cur)
             return {
-                'jsonrpc': '2.0',
+                'jsonrpc': '2.0', 
                 'error': {
                     'code': 2,
                     'message': 'Already'

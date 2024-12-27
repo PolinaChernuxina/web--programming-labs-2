@@ -128,7 +128,7 @@ def edit(id):
     if request.method == 'POST': 
         article.title = request.form.get('title')
         article.article_text = request.form.get('article_text')
-        db.session.commit()
+        db.session.commit() 
         return redirect('/lab8/articles')
     return render_template('lab8/edit.html', article=article)
 
